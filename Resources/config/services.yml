@@ -1,0 +1,30 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    sqli_publish_scheduler.handler.visibility:
+        public: true
+        class: SQLI\PublishSchedulerBundle\Services\Handlers\PublishSchedulerVisibility
+        arguments:
+            - '%sqli_publish_scheduler.ezdatetime_field_publish%'
+            - '%sqli_publish_scheduler.ezdatetime_field_unpublish%'
+            - '@ezpublish.api.repository'
+
+#    sqli_publish_scheduler.handler.object_state:
+#        public: true
+#        class: SQLI\PublishSchedulerBundle\Services\Handlers\PublishSchedulerVisibility
+#        arguments:
+#            - '%sqli_publish_scheduler.ezdatetime_field_publish%'
+#            - '%sqli_publish_scheduler.ezdatetime_field_unpublish%'
+#            - '@ezpublish.api.repository'
+
+    SQLI\PublishSchedulerBundle\Slot\OnPublishSlot:
+        tags:
+            - { name: ezpublish.api.slot, signal: ContentService\PublishVersionSignal }
+
+    sqli_publish_scheduler.cron:
+        class: SQLI\PublishSchedulerBundle\Command\PublishUnpublishCommand
+        tags:
+            - { name: console.command }
+            - { name: ezplatform.cron.job, schedule: '* * * * *' }
