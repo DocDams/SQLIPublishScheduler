@@ -27,7 +27,7 @@ public function registerBundles()
 {
     $bundles = [
         // ...
-        new SQLI\EzPlatformAdminUiExtendedBundle\SQLIPublishSchedulerBundle(),
+        new SQLI\PublishSchedulerBundle\SQLIPublishSchedulerBundle(),
     ];
 }
 ```
