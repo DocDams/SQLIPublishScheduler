@@ -32,8 +32,7 @@ public function registerBundles()
 }
 ```
 
-
-### ContentType
+### ContentType
 
 Add 2 new fields (ezdate or ezdatetime) for each ContentType concerned by delayed publication.
 Expected identifiers : `publish_date` and `unpublish_date`, or whatever defined in 
@@ -53,7 +52,7 @@ sqli_publish_scheduler:
 ```
 
 
-### Cron (optional)
+### Cron (optional)
 
 Command cronjob used ezplatform-cron and already declared in `services.yml` to publish/unpublish contents.
 You can override this service in order to change frequency (every minute by default)
